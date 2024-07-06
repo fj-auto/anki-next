@@ -15,6 +15,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { ChartData } from '../types';
+import { formatDate } from '../utils/dateUtils';
 
 interface ChartsProps {
   reviewData: ChartData[];
@@ -22,11 +23,16 @@ interface ChartsProps {
 }
 
 const Charts: React.FC<ChartsProps> = ({ reviewData, easeData }) => {
+  const formattedReviewData = reviewData.map(item => ({
+    ...item,
+    date: item.date ? formatDate(new Date(item.date)) : '',
+  }));
+
   return (
     <div className="mb-4">
       <h3 className="text-lg font-bold mb-2">Review History</h3>
       <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={reviewData}>
+        <BarChart data={formattedReviewData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />
           <YAxis />

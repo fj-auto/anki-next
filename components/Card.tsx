@@ -1,6 +1,7 @@
 // file: components/Card.tsx
 import React from 'react';
 import { AnkiCard } from '../types';
+import { formatDate } from '../utils/dateUtils';
 
 interface CardProps {
   card: AnkiCard;

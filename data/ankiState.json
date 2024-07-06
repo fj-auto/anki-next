@@ -1,4 +1,3 @@
-// file: /data/ankiState.json
 {
   "decks": {
     "General": {
@@ -9,10 +8,10 @@
           "front": "苹果",
           "back": "Apple",
           "interval": 1,
-          "ease": 2.5,
-          "reviews": 0,
-          "nextReview": "2024-07-04",
-          "lastReview": null
+          "ease": 2.3,
+          "reviews": 1,
+          "nextReview": "2024-07-07",
+          "lastReview": "2024-07-06"
         },
         {
           "id": 2,
@@ -21,7 +20,7 @@
           "interval": 1,
           "ease": 2.5,
           "reviews": 0,
-          "nextReview": "2024-07-04",
+          "nextReview": "2024-07-06",
           "lastReview": null
         },
         {
@@ -31,7 +30,7 @@
           "interval": 1,
           "ease": 2.5,
           "reviews": 0,
-          "nextReview": "2024-07-04",
+          "nextReview": "2024-07-06",
           "lastReview": null
         }
       ]
@@ -45,10 +44,10 @@
     "maxInterval": 36500
   },
   "stats": {
-    "totalReviews": 0,
+    "totalReviews": 1,
     "correctReviews": 0,
-    "averageEase": 2.5,
-    "streakDays": 0,
-    "lastReviewDate": null
+    "averageEase": 2.3,
+    "streakDays": 1,
+    "lastReviewDate": "2024-07-06"
   }
 }

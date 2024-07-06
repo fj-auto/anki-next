@@ -10,6 +10,7 @@ import Settings from '../components/Settings';
 import Charts from '../components/Charts';
 import { useAnkiState } from '../hooks/useAnkiState';
 import { Deck, AnkiCard, ChartData } from '../types';
+import { formatDate } from '../utils/dateUtils';
 
 export default function Home() {
   const { state, dispatch, addCard, addDeck, updateCard, updateSettings } = useAnkiState();
@@ -17,6 +18,7 @@ export default function Home() {
   const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [view, setView] = useState<'study' | 'stats' | 'settings'>('study');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const currentCard = state.decks[currentDeck]?.cards[currentCardIndex];
 
@@ -143,7 +145,7 @@ export default function Home() {
                 onAnswer={handleUpdateCard}
               />
               <div className="mb-4 text-sm text-gray-600">
-                Next review: {currentCard.nextReview.toLocaleDateString()}
+                Next review: {formatDate(currentCard.nextReview)}
                 <br />
                 Current interval: {currentCard.interval.toFixed(1)} days
                 <br />

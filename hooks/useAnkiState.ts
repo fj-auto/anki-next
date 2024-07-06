@@ -1,14 +1,8 @@
 // file: hooks/useAnkiState.ts
 import { useReducer, useEffect } from 'react';
 import { AnkiState, AnkiAction, Deck, AnkiCard, Settings, Stats } from '../types';
+import { formatDate, parseDate, addDays } from '../utils/dateUtils';
 
-function formatDate(date: Date): string {
-  return date.toISOString().split('T')[0]; // 返回 "YYYY-MM-DD" 格式
-}
-
-function parseDate(dateString: string): Date {
-  return new Date(dateString + 'T00:00:00Z');
-}
 const initialState: AnkiState = {
   decks: {
     General: {
@@ -238,8 +232,8 @@ export function useAnkiState() {
       interval,
       ease,
       reviews,
-      nextReview: parseDate(formatDate(new Date(Date.now() + interval * 24 * 60 * 60 * 1000))),
-      lastReview: parseDate(formatDate(new Date())),
+      nextReview: addDays(new Date(), Math.round(interval)),
+      lastReview: new Date(),
     };
 
     dispatch({ type: 'UPDATE_CARD', payload: { deckName, cardId: card.id, updates } });
@@ -252,7 +246,7 @@ export function useAnkiState() {
         averageEase:
           (state.stats.averageEase * state.stats.totalReviews + ease) /
           (state.stats.totalReviews + 1),
-        lastReviewDate: parseDate(formatDate(new Date())),
+        lastReviewDate: new Date(),
         streakDays: calculateStreak(state.stats.lastReviewDate, state.stats.streakDays),
       },
     });
