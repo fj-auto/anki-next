@@ -1,4 +1,5 @@
 // file: types/index.ts
+
 export interface AnkiCard {
   id: number;
   front: string;
@@ -31,10 +32,17 @@ export interface Stats {
   lastReviewDate: Date | null;
 }
 
+export interface DailyProgress {
+  newCardsLearned: number;
+  reviewsDone: number;
+  date: string;
+}
+
 export interface AnkiState {
   decks: { [key: string]: Deck };
   settings: Settings;
   stats: Stats;
+  dailyProgress: DailyProgress;
 }
 
 export type AnkiAction =
@@ -46,6 +54,8 @@ export type AnkiAction =
   | { type: 'ADD_DECK'; payload: { name: string } }
   | { type: 'UPDATE_SETTINGS'; payload: Partial<Settings> }
   | { type: 'UPDATE_STATS'; payload: Partial<Stats> }
+  | { type: 'UPDATE_DAILY_PROGRESS'; payload: Partial<DailyProgress> }
+  | { type: 'RESET_DAILY_PROGRESS' }
   | { type: 'LOAD_STATE'; payload: AnkiState };
 
 export interface ChartData {

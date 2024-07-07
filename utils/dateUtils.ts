@@ -13,12 +13,13 @@ export function formatDate(date: Date | string): string {
 }
 
 /**
- * Parses a date string in 'YYYY-MM-DD' format to a Date object.
+ * Parses a date string in 'YYYY-MM-DD' format to a Date object in UTC.
  * @param dateString - Date string in 'YYYY-MM-DD' format
  * @returns Date object
  */
 export function parseDate(dateString: string): Date {
-  return new Date(dateString + 'T00:00:00Z');
+  const [year, month, day] = dateString.split('-').map(Number);
+  return new Date(Date.UTC(year, month - 1, day));
 }
 
 /**
@@ -57,4 +58,8 @@ export function isToday(date: Date): boolean {
     date.getMonth() === today.getMonth() &&
     date.getFullYear() === today.getFullYear()
   );
+}
+
+export function getCurrentDate(): string {
+  return formatDate(new Date());
 }
